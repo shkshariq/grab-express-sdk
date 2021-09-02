@@ -19,15 +19,17 @@ Once you've created an app, you can get an access token from the [auth api](http
 package main  
   
 import (  
-   ge "https://github.com/shkshariq/grab-express-sdk"  
- "testing")  
+   ge "github.com/shkshariq/grab-express-sdk/grab-express"  
+   "fmt"
+)  
   
 //https://developer-beta.stg-myteksi.com/docs/grab-express/#authentication-method  
 var token = `GRAB_AUTH_TOKEN`
+var isProduction = fasle
 
 func main() {  
   
-   client := ge.NewClient(false, token)  
+   client := ge.NewClient(isProduction, token)  
   
    // Preparing Request  
   req := ge.GrabExpressCancelDelivery{}  
