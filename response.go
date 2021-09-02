@@ -1,4 +1,4 @@
-package grab_express
+package main
 
 type GrabExpressCreateQuotesResponse struct {
 	Quotes      []Quote   `json:"quotes"`

@@ -1,4 +1,4 @@
-package grab_express
+package main
 
 func (this GrabExpressCancelDelivery) APIName() string {
 	return endpointCancelBooking
