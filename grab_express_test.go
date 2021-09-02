@@ -1,7 +1,6 @@
-package main
+package grab_express
 
 import (
-	ge "github.com/shkshariq/grab-express-sdk/grab-express"
 	"testing"
 )
 
@@ -10,30 +9,30 @@ var token = `eyJhbGciiJSUzI1NiIsImtpZCI6Il9kZWZhdWx0IiwidHlwIjoiSldUIn0.eyJhdWQi
 
 func TestGetQuote(t *testing.T) {
 
-	client := ge.NewClient(false, token)
+	client := NewClient(false, token)
 
 	// Preparing Request
-	req := ge.GrabExpressCreateQuotes{}
+	req := GrabExpressCreateQuotes{}
 	req.ServiceType = "INSTANT"
-	req.Packages = []ge.Package{
-		ge.Package{
+	req.Packages = []Package{
+		Package{
 			Name:        "Fish Burger",
 			Description: "Fish Burger with mayonnaise sauce",
 			Quantity:    2,
 			Price:       5,
-			Dimensions: ge.Dimension{
+			Dimensions: Dimension{
 				Height: 0,
 				Width:  0,
 				Depth:  0,
 				Weight: 0,
 			},
 		},
-		ge.Package{
+		Package{
 			Name:        "Truffle Fries",
 			Description: "Thin cut deep-fried potatoes topped with truffle oil",
 			Quantity:    2,
 			Price:       4,
-			Dimensions: ge.Dimension{
+			Dimensions: Dimension{
 				Height: 0,
 				Width:  0,
 				Depth:  0,
@@ -41,16 +40,16 @@ func TestGetQuote(t *testing.T) {
 			},
 		},
 	}
-	req.Origin = ge.Location{
+	req.Origin = Location{
 		Address: "1 IJK View, Singapore 018936",
-		Coordinates: ge.Coordinates{
+		Coordinates: Coordinates{
 			Latitude:  1.2345678,
 			Longitude: 3.4567890,
 		},
 	}
-	req.Destination = ge.Location{
+	req.Destination = Location{
 		Address: "1 ABC St, Singapore 078881",
-		Coordinates: ge.Coordinates{
+		Coordinates: Coordinates{
 			Latitude:  1.2345678,
 			Longitude: 3.4567890,
 		},
@@ -66,35 +65,35 @@ func TestGetQuote(t *testing.T) {
 
 func TestCreateDeliveries(t *testing.T) {
 
-	client := ge.NewClient(false, token)
+	client := NewClient(false, token)
 
 	// Preparing Request
-	req := ge.GrabExpressCreateDeliveries{}
+	req := GrabExpressCreateDeliveries{}
 	req.MerchantOrderID = "1ac1fa2f-880a-43d3-8476-7cc6e99e40f6"
 	req.ServiceType = "INSTANT"
 	req.PaymentMethod = "CASHLESS"
-	req.Origin = ge.Location{
+	req.Origin = Location{
 		Address: "1 IJK View, Singapore 018936",
-		Coordinates: ge.Coordinates{
+		Coordinates: Coordinates{
 			Latitude:  1.2345678,
 			Longitude: 3.4567890,
 		},
 	}
-	req.Destination = ge.Location{
+	req.Destination = Location{
 		Address: "1 ABC St, Singapore 078881",
-		Coordinates: ge.Coordinates{
+		Coordinates: Coordinates{
 			Latitude:  1.2345678,
 			Longitude: 3.4567890,
 		},
 	}
-	req.Recipient = ge.Recipient{
+	req.Recipient = Recipient{
 		FirstName:  "John",
 		LastName:   "Tan",
 		Email:      "john@gmail.com",
 		Phone:      "91526655",
 		SmsEnabled: true,
 	}
-	req.Sender = ge.Sender{
+	req.Sender = Sender{
 		FirstName:   "Jewel Changi Branch",
 		CompanyName: "Shake Shack",
 		Email:       "ssburger@gmail.com",
@@ -102,25 +101,25 @@ func TestCreateDeliveries(t *testing.T) {
 		SmsEnabled:  true,
 	}
 
-	req.Packages = []ge.Package{
-		ge.Package{
+	req.Packages = []Package{
+		Package{
 			Name:        "Fish Burger",
 			Description: "Fish Burger with mayonnaise sauce",
 			Quantity:    2,
 			Price:       5,
-			Dimensions: ge.Dimension{
+			Dimensions: Dimension{
 				Height: 0,
 				Width:  0,
 				Depth:  0,
 				Weight: 0,
 			},
 		},
-		ge.Package{
+		Package{
 			Name:        "Truffle Fries",
 			Description: "Thin cut deep-fried potatoes topped with truffle oil",
 			Quantity:    2,
 			Price:       4,
-			Dimensions: ge.Dimension{
+			Dimensions: Dimension{
 				Height: 0,
 				Width:  0,
 				Depth:  0,
@@ -139,10 +138,10 @@ func TestCreateDeliveries(t *testing.T) {
 
 func TestGetDeliveryByID(t *testing.T) {
 
-	client := ge.NewClient(false, token)
+	client := NewClient(false, token)
 
 	// Preparing Request
-	req := ge.GrabExpressGetDeliveryByID{}
+	req := GrabExpressGetDeliveryByID{}
 	req.DeliveryID = "IN-2-00D2B1CBMWBO7JND48J5"
 
 	res, err := client.GetDeliveryByID(req)
@@ -155,10 +154,10 @@ func TestGetDeliveryByID(t *testing.T) {
 
 func TestCancelDelivery(t *testing.T) {
 
-	client := ge.NewClient(false, token)
+	client := NewClient(false, token)
 
 	// Preparing Request
-	req := ge.GrabExpressCancelDelivery{}
+	req := GrabExpressCancelDelivery{}
 	req.DeliveryID = "IN-2-00D2B1CBMWBO7JND48J5"
 
 	res, err := client.CancelDelivery(req)
